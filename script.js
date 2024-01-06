@@ -89,3 +89,77 @@ function warnTheSheep2(queue) {
 }
 
 console.log(warnTheSheep2(sheepArr));
+
+//--------------------------------- Info about challenge
+
+// Issue
+// Looks like some hoodlum plumber and his brother has been running around and damaging your stages again.
+
+// The pipes connecting your level's stages together need to be fixed before you receive any more complaints.
+
+// The pipes are correct when each pipe after the first is 1 more than the previous one.
+
+// Task
+// Given a list of unique numbers sorted in ascending order, return a new list so that the values increment by 1 for each index from the minimum value up to the maximum value (both included).
+
+// Example
+// Input:  1,3,5,6,7,8 Output: 1,2,3,4,5,6,7,8
+
+//--------------------------------- Challenge Number - 3 (Lario and Muigi Pipe Problem)
+
+const pipeArr = [-4, 1, 3, 5, 6, 7, 8];
+
+const pipeFix = (arr) => {
+  let fixedPipeArr = [];
+  const findLastPipe = arr.length - 1;
+
+  for (let i = arr[0]; i <= arr[findLastPipe]; i++) {
+    // shorter method is without new variable (findLastPipe), write directly to arr[arr.length - 1]
+    fixedPipeArr.push(i);
+  }
+  return fixedPipeArr;
+};
+
+console.log(pipeFix(pipeArr));
+
+//--------------------------------- Info about challenge
+
+// You have to write a function that describe Leo:
+// if oscar was (integer) 88, you have to return "Leo finally won the oscar! Leo is happy".
+// if oscar was 86, you have to return "Not even for Wolf of wallstreet?!"
+// if it was not 88 or 86 (and below 88) you should return "When will you give Leo an Oscar?"
+// if it was over 88 you should return "Leo got one already!"
+
+//--------------------------------- Challenge Number - 4 (Leonardo Dicaprio and Oscars)
+
+// my first method
+
+const leo = (oscar) => {
+  if (oscar > 86 && oscar < 88) {
+    return "When will you give Leo an Oscar?";
+  } else if (oscar === 88) {
+    return "Leo finally won the oscar! Leo is happy";
+  } else if (oscar === 86) {
+    return "Not even for Wolf of wallstreet?!";
+  } else if (oscar > 88) {
+    return "Leo got one already!";
+  } else {
+    return "When will you give Leo an Oscar?";
+  }
+};
+
+console.log(leo(86));
+
+// most popular method (ternary operator)
+
+const leo2 = (oscar) => {
+  return oscar === 88
+    ? "Leo finally won the oscar! Leo is happy"
+    : oscar === 86
+    ? "Not even for Wolf of wallstreet?!"
+    : oscar < 88
+    ? "When will you give Leo an Oscar?"
+    : "Leo got one already!";
+};
+
+console.log(leo2(86));
