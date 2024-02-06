@@ -163,3 +163,90 @@ const leo2 = (oscar) => {
 };
 
 console.log(leo2(86));
+
+//--------------------------------- Info about challenge
+// In this Kata, you will be given an array of numbers in which two numbers occur once and the rest occur only twice. Your task will be to return the sum of the numbers that occur only once.
+
+// For example, repeats([4,5,7,5,4,8]) = 15 because only the numbers 7 and 8 occur once, and their sum is 15. Every other number occurs twice.
+
+//--------------------------------- Challenge Number - 5 (Sum of array singles)
+
+const repeatsArray = [4, 5, 7, 5, 4, 8];
+
+const repeats = (data) => {
+  let numCount = {};
+
+  for (let num of data) {
+    if (numCount[num]) {
+      numCount[num] += 1;
+    } else {
+      numCount[num] = 1;
+    }
+  }
+
+  console.log(numCount);
+
+  let result = 0;
+  for (let num in numCount) {
+    if (numCount[num] === 1) {
+      result += parseInt(num);
+    }
+  }
+
+  return result;
+};
+
+const noRepeatsOfSum = repeats(repeatsArray);
+
+console.log(noRepeatsOfSum);
+
+// most popular method
+
+function repeats2(arr) {
+  return arr
+    .filter((v) => arr.indexOf(v) === arr.lastIndexOf(v))
+    .reduce((a, b) => a + b, 0);
+}
+
+console.log(repeats2(repeatsArray));
+
+//--------------------------------- Info about challenge
+// Take a number: 56789. Rotate left, you get 67895.
+
+// Keep the first digit in place and rotate left the other digits: 68957.
+
+// Keep the first two digits in place and rotate the other ones: 68579.
+
+// Keep the first three digits and rotate left the rest: 68597. Now it is over since keeping the first four it remains only one digit which rotated is itself.
+
+// You have the following sequence of numbers:
+
+// 56789 -> 67895 -> 68957 -> 68579 -> 68597
+
+// and you must return the greatest: 68957.
+
+// Task
+// Write function max_rot(n) which given a positive integer n returns the maximum number you got doing rotations similar to the above example.
+
+// So max_rot (or maxRot or ... depending on the language) is such as:
+
+// max_rot(56789) should return 68957
+
+// max_rot(38458215) should return 85821534
+
+//--------------------------------- Challenge Number - 6 (Rotate for a Max)
+
+function maxRot(n) {
+  let numStr = n.toString();
+  let rotations = [numStr];
+
+  for (let i = 0; i < numStr.length - 1; i++) {
+    numStr = numStr.slice(0, i) + numStr.slice(i + 1) + numStr[i];
+    rotations.push(numStr);
+  }
+
+  return Math.max(...rotations.map(Number));
+}
+
+console.log(maxRot(56789));
+console.log(maxRot(38458215));
